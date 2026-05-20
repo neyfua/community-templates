@@ -127,7 +127,7 @@ toolbarbutton#tabs-newtab-button {
 }
 
 .urlbar-background {
-  background-color: var(--base) !important;
+  background-color: var(--overlay) !important;
 }
 
 #urlbar-input-container {
