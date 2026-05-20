@@ -7,12 +7,12 @@
   --text:           {{colors.on_surface.default.hex}};
   --secondary:      {{colors.secondary.default.hex}};
   --primary:        {{colors.primary.default.hex}};
-  --on_primary:      {{colors.on_primary.default.hex}};
+  --on_primary:     {{colors.on_primary.default.hex}};
 }
 
 :root {
   /* --- Core Palette Overrides --- */
-  --zen-colors-primary: var(--base) !important;
+  --zen-colors-primary: var(--primary) !important;
   --zen-primary-color: var(--base) !important;
   --zen-colors-secondary: var(--surface) !important;
   --zen-colors-tertiary: var(--overlay) !important;
@@ -104,10 +104,11 @@ toolbar .toolbarbutton-1 {
     .toolbarbutton-text,
     .toolbarbutton-badge-stack
     ) {
-      fill: var(--base);
+      fill: color-mix(in srgb, var(--text) 40%, transparent) !important;
     }
   }
 }
+
 .tab-text {
   color: var(--text);
 }
@@ -178,11 +179,7 @@ toolbarbutton#tabs-newtab-button {
   background: var(--base) !important;
 }
 
-#TabsToolbar {
-  background-color: var(--base) !important;
-}
-
-hbox#titlebar {
+#TabsToolbar, hbox#titlebar {
   background-color: var(--base) !important;
 }
 
@@ -227,12 +224,106 @@ hbox#titlebar {
 #ContentSelectDropdownPopup richlistitem:hover,
 #ContentSelectDropdownPopup .ContentSelectDropdown-item:hover {
   background-color: var(--subtle) !important;
-  color: var(--primary) !important;
 }
 
 #ContentSelectDropdown menupopup menuitem[selected="true"],
 #ContentSelectDropdownPopup richlistitem[selected="true"],
 #ContentSelectDropdownPopup .ContentSelectDropdown-item[selected="true"] {
   background-color: var(--muted) !important;
+}
+
+/* Force inner text elements to inherit the primary color */
+#ContentSelectDropdown menupopup menuitem[_moz-menuactive="true"] *,
+#ContentSelectDropdownPopup richlistitem[_moz-menuactive="true"] *,
+#ContentSelectDropdownPopup .ContentSelectDropdown-item[_moz-menuactive="true"] *,
+#ContentSelectDropdownPopup richlistitem:hover *,
+#ContentSelectDropdownPopup .ContentSelectDropdown-item:hover *,
+#ContentSelectDropdown menupopup menuitem[selected="true"] *,
+#ContentSelectDropdownPopup richlistitem[selected="true"] *,
+#ContentSelectDropdownPopup .ContentSelectDropdown-item[selected="true"] * {
   color: var(--primary) !important;
+}
+
+
+/* Color for dialogs */
+dialog {
+	background: var(--base) !important;
+	color: var(--text) !important;
+}
+
+/* Style standard dialog buttons (Cancel, Disable, etc.) */
+dialog button,
+panel button,
+window[role="dialog"] button,
+window[windowtype="alert:alert"] button,
+.dialog-button-box button {
+  appearance: none !important;
+  background-color: var(--overlay) !important;
+  color: var(--text) !important;
+  border-radius: 4px !important;
+  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent) !important;
+}
+dialog button:hover,
+panel button:hover,
+window[role="dialog"] button:hover,
+window[windowtype="alert:alert"] button:hover,
+.dialog-button-box button:hover {
+  background-color: color-mix(in srgb, var(--overlay) 70%, transparent) !important;
+}
+/* Style the Primary/Accept/OK button */
+dialog button[dlgtype="accept"],
+dialog button.primary,
+dialog button[default="true"],
+panel button.primary,
+panel button[default="true"],
+window[role="dialog"] button[default="true"],
+window[windowtype="alert:alert"] button[default="true"],
+.dialog-button-box button[dlgtype="accept"],
+.dialog-button-box button.primary {
+  background-color: var(--secondary) !important;
+  color: var(--base) !important;
+}
+dialog button[dlgtype="accept"]:hover,
+dialog button.primary:hover,
+dialog button[default="true"]:hover,
+panel button.primary:hover,
+panel button[default="true"]:hover,
+window[role="dialog"] button[default="true"]:hover,
+window[windowtype="alert:alert"] button[default="true"]:hover,
+.dialog-button-box button[dlgtype="accept"]:hover,
+.dialog-button-box button.primary:hover {
+  background-color: color-mix(in srgb, var(--secondary) 70%, transparent) !important;
+}
+
+/* Style dialog text links */
+.text-link {
+  color: var(--secondary) !important;
+}
+.text-link:hover {
+  color: color-mix(in srgb, var(--secondary) 70%, transparent) !important;
+}
+
+/* Style checkboxes and radio buttons globally in UI */
+*|input[type="checkbox"],
+[type="checkbox"],
+*|input[type="radio"],
+[type="radio"] {
+  accent-color: {{colors.primary.default.hex}} !important;
+}
+
+/* Custom text selection styling */
+::selection {
+  background-color: var(--primary) !important;
+  color: var(--base) !important;
+}
+
+/* Style context menus hover */
+menu:where([_moz-menuactive="true"]:not([disabled="true"])), 
+menuitem:where([_moz-menuactive="true"]:not([disabled="true"])) {
+  background-color: var(--primary) !important;
+  color: var(--base) !important;
+}
+menu:where([_moz-menuactive="true"]:not([disabled="true"])) :is(.menu-text, .menu-iconic-text, .menu-accel):not(menupopup *), 
+menuitem:where([_moz-menuactive="true"]:not([disabled="true"])) :is(.menu-text, .menu-iconic-text, .menu-accel) {
+  color: var(--base) !important;
 }
