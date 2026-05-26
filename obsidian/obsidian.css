@@ -51,7 +51,7 @@
   /* Navigation */
   --nav-item-color:             {{colors.on_surface_variant.default.hex}};
   --nav-item-color-hover:       {{colors.on_surface.default.hex}};
-  --nav-item-color-active:      {{colors.primary.default.hex}};
+  --nav-item-color-active:      {{colors.on_primary.default.hex}};
   --nav-item-background-hover:  {{colors.surface_container_high.default.hex}};
   --nav-item-background-active: {{colors.primary.default.hex | set_alpha 0.12}};
   --nav-collapse-icon-color:    {{colors.outline.default.hex}};
@@ -199,7 +199,7 @@
   /* Navigation */
   --nav-item-color:             {{colors.on_surface_variant.light.hex}};
   --nav-item-color-hover:       {{colors.on_surface.light.hex}};
-  --nav-item-color-active:      {{colors.primary.light.hex}};
+  --nav-item-color-active:      {{colors.on_primary.light.hex}};
   --nav-item-background-hover:  {{colors.surface_container_high.light.hex}};
   --nav-item-background-active: {{colors.primary.light.hex | set_alpha 0.1}};
   --nav-collapse-icon-color:    {{colors.outline.light.hex}};
