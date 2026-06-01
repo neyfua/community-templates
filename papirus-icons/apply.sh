@@ -48,12 +48,10 @@ set -euo pipefail
     if [[ -d "/usr/share/icons/Papirus" ]]; then
       cp -r "/usr/share/icons/Papirus" "$HOME/.local/share/icons/"
     else
-      echo "Error: Papirus Icons are not installed"
-      exit
+      echo "Error: Papirus Icons are not installed" 1>&2; exit 1
     fi
   fi
  
   # 6. Apply icons instantly
-  [[ -n "$closest" ]] && "$(dirname "$0")/papirus-folders" -C "$closest" || :
-
+  [[ -n "$closest" ]] && "$(dirname "$0")/papirus-folders" -C "$closest" || echo "Error: Failed to apply papirus-folders"
 }
