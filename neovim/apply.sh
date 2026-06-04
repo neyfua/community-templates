@@ -20,15 +20,14 @@ return { 'RRethy/base16-nvim',
 EOF
     fi
 else
-    echo "lazy.nvim not installed. Install RRethy/base16-nvim maunally." >&2
-fi
-
-if [ -f "$init_lua" ] && ! grep -q "require('matugen')" "$init_lua"; then
-    cat >> "$init_lua" <<'EOF'
+    echo "lazy.nvim not installed. Install RRethy/base16-nvim manually." >&2
+    if [ -f "$init_lua" ] && ! grep -qF "pcall(require, 'matugen')" "$init_lua"; then
+        cat >> "$init_lua" <<'EOF'
 
 local ok, matugen = pcall(require, 'matugen')
 if ok then matugen.setup() end
 EOF
+    fi
 fi
 
 pkill -SIGUSR1 nvim >/dev/null 2>&1 || true
