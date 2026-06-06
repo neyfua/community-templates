@@ -14,5 +14,6 @@ elif grep -q "^$include_line$" "$config_file"; then
 elif grep -q '^include=.*themes' "$config_file"; then
     sed -i 's|^include=.*themes.*|'"$include_line"'|' "$config_file"
 else
+    [ -s "$config_file" ] && [ -n "$(tail -c1 "$config_file")" ] && echo >>"$config_file"
     echo "$include_line" >>"$config_file"
 fi
